@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'rb.apps.RbConfig',
 
     #third-party-applications
-    'rest_framework'
+    'rest_framework',
+    'rest_framework.authtoken',
 ]
 
 DATABASES = {
