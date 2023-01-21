@@ -16,3 +16,9 @@ Resume builder is a web-app which ease the process of making resume by providing
 - JavaScript
 
 ## Future Plans
+- Integrating Backend and Frontend so as to save user progress
+- Adding Professional Resume Templates
+- Integrating large language models to suggest descriptions to the user
+- Adding feature for resume review
+- Adding feature to send resume to potential recruiters
+
