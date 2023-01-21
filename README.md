@@ -15,6 +15,14 @@ Resume builder is a web-app which ease the process of making resume by providing
 - Angular
 - JavaScript
 
+## Features
+- Dynamic in nature and minimalistic clean look for no visible bloating
+- Important Resume Points for appealing resume creation
+- Practical and working features
+- You can add multiple educations, projects, skills etc 
+- Different templates can be achieved easily via angular parent child relationship
+
+
 ## Future Plans
 - Integrating Backend and Frontend so as to save user progress
 - Adding Professional Resume Templates
