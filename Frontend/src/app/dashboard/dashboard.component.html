@@ -1,0 +1,259 @@
+<!-- <form [formGroup]="resumeForm" (ngSubmit)="signUp()">
+    <input formControlName="email" type="text">
+</form>
+<p>{{resumeForm.controls["email"].value}}</p> -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <!-- Container wrapper -->
+    <div class="container">
+      <!-- Navbar brand -->
+      <a class="navbar-brand me-2" href="/">
+        <img
+          src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp"
+          height="16"
+          alt="MDB Logo"
+          loading="lazy"
+          style="margin-top: -1px;"
+        />
+      </a>
+  
+      <!-- Toggle button -->
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-mdb-toggle="collapse"
+        data-mdb-target="#navbarButtonsExample"
+        aria-controls="navbarButtonsExample"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <i class="fas fa-bars"></i>
+      </button>
+  
+      <!-- Collapsible wrapper -->
+      <div class="collapse navbar-collapse" id="navbarButtonsExample">
+        <!-- Left links -->
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link">Dashboard</a>
+          </li>
+        </ul>
+        <!-- Left links -->
+  
+        <div class="d-flex align-items-center">
+          <button type="button" class="btn btn-link px-3 me-2">
+            LOGOUT
+          </button>
+          <!-- <button type="button" class="btn btn-primary me-3">
+            Sign up for free
+          </button>
+          <a
+            class="btn btn-dark px-3"
+            href="https://github.com/mdbootstrap/mdb-ui-kit"
+            role="button"
+            ><i class="fab fa-github"></i
+          ></a> -->
+        </div>
+      </div>
+      <!-- Collapsible wrapper -->
+    </div>
+    <!-- Container wrapper -->
+  </nav>
+
+<div class="row">
+    <div class="col-md-3 vh-100 pt-4 ms-4 pe-4" style="height: 440px;
+    /* width: 215px; */
+    overflow: auto;
+    float: left;
+    position: relative;
+    margin-left: -5px;">
+        <form [formGroup]="resumeForm" (ngSubmit)="saveResume()">
+            <div class="form-outline mb-4">
+                <input formControlName="firstName" type="text" id="firstname" class="form-control" />
+                <label class="form-label" for="firstname">First Name</label>
+            </div>
+            <div class="form-outline mb-4">
+                <input formControlName="lastName" type="text" id="lastname" class="form-control" />
+                <label class="form-label" for="lastname">Last Name</label>
+            </div>
+
+            <div class="divider d-flex align-items-center my-4">
+                <p class="text-center fw-bold mx-3 mb-0">Socials</p>
+            </div>
+    
+            <div class="form-outline mb-4">
+                <input formControlName="email" type="text" id="email" class="form-control" />
+                <label class="form-label" for="email">Email Address</label>
+            </div>
+            <div class="form-outline mb-4">
+                <input formControlName="linkedin" type="text" id="linkedin" class="form-control" />
+                <label class="form-label" for="linkedin">LinkedIn</label>
+            </div>
+            <div class="form-outline mb-4">
+                <input formControlName="github" type="text" id="github" class="form-control" />
+                <label class="form-label" for="github">Github</label>
+            </div>
+            <div class="input-group mb-4">
+                <label class="mt-1 me-2 ms-2" for="mobile">Mobile</label>
+                <span class="input-group-text pl-2" id="basic-addon3">+91</span>
+                <input formControlName="mobile" type="text" class="form-control" id="mobile" aria-describedby="basic-addon3"/>
+            </div>
+
+            <div id="education" formArrayName="education" >
+                <div class="divider d-flex align-items-center my-4">
+                    <p class="text-center fw-bold mx-3 mb-0">Eduction</p>
+                </div>
+
+                <button type="button" style = "display: inline; width: 30px; margin-left: 20px;" (click)="deleteEducation()">-</button>
+                <p style = "display: inline; padding: 5px;">{{educations.controls.length}}</p>
+                <button type="button" style = "display: inline; width: 30px;" class=" mb-4" (click)="addEducation()">+</button>
+
+                <div *ngFor="let edu of educations.controls; let i = index">
+                    <div [formGroupName]="i" style=" border: 2px solid #4e4e4e;border-radius: 5px;" class="pt-4 mb-4 ms-2">
+                        <div class="form-outline mb-2">
+                            <input formControlName="schoolName" type="text" id="school{{i+1}}" class="form-control" />
+                            <label class="form-label" for="school{{i+1}}">School {{i+1}}</label>
+                        </div>
+                        <div class="form-outline mb-2">
+                            <input formControlName="program" type="text" id="program{{i+1}}" class="form-control" />
+                            <label class="form-label" for="program{{i+1}}">Program {{i+1}}</label>
+                        </div>
+                        <div class="form-outline mb-2">
+                            <input formControlName="startYearEdu" type="number" id="startYearEdu{{i+1}}" class="form-control" />
+                            <label class="form-label" for="startYearEdu{{i+1}}">Start Year {{i+1}}</label>
+                        </div>
+                        <div class="form-outline mb-2">
+                            <input formControlName="endYearEdu" type="number" id="endYearEdu{{i+1}}" class="form-control" />
+                            <label class="form-label" for="endYearEdu{{i+1}}">End Year {{i+1}}</label>
+                        </div>
+                        <div class="form-outline mb-2">
+                            <input formControlName="cgpa" type="number" id="cgpa{{i+1}}" class="form-control" />
+                            <label class="form-label" for="cgpa{{i+1}}">CGPA {{i+1}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="Experience" formArrayName="experience">
+                <div class="divider d-flex align-items-center my-4">
+                    <p class="text-center fw-bold mx-3 mb-0">Experience</p>
+                </div>
+
+                <button type="button" style = "display: inline; width: 30px; margin-left: 20px;"(click)="deleteExperience()">-</button>
+                <p style = "display: inline; padding: 5px;">{{experiences.controls.length}}</p>
+                <button type="button" style = "display: inline; width: 30px;" class=" mb-4"(click)="addExperience()">+</button>
+
+                <div *ngFor="let exp of experiences.controls; let i = index">
+                    <div [formGroupName]="i" style=" border: 2px solid #4e4e4e;border-radius: 5px;" class="pt-4 mb-4 ms-2">
+                        <div class="form-outline mb-2">
+                            <input formControlName="role" type="text" id="role{{i+1}}" class="form-control" />
+                            <label class="form-label" for="role{{i+1}}">Role {{i+1}}</label>
+                        </div>
+                        <div class="form-outline mb-2">
+                            <input formControlName="organisation" type="text" id="organisation{{i+1}}" class="form-control" />
+                            <label class="form-label" for="organisation{{i+1}}">Organisation {{i+1}}</label>
+                        </div>
+                        <div class="form-outline mb-2">
+                            <textarea formControlName="descriptionExp" type="text" id="descriptionExp{{i+1}}" class="form-control"></textarea>
+                            <label class="form-label" for="descriptionExp{{i+1}}">Description {{i+1}}</label>
+                        </div>
+                        <div class="form-outline mb-2">
+                            <input formControlName="startYearExp" type="number" id="startYearExp{{i+1}}" class="form-control" />
+                            <label class="form-label" for="startYearExp{{i+1}}">Start Year {{i+1}}</label>
+                        </div>
+                        <div class="form-outline mb-2">
+                            <input formControlName="endYearExp" type="number" id="endYearExp{{i+1}}" class="form-control" />
+                            <label class="form-label" for="endYearExp{{i+1}}">End Year {{i+1}}</label>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div id="Projects">
+                <div class="divider d-flex align-items-center my-4">
+                    <p class="text-center fw-bold mx-3 mb-0">Projects</p>
+                </div>
+
+                <button type="button" style = "display: inline; width: 30px; margin-left: 20px;"(click)="changeProjectsNumber(false)">-</button>
+                <p style = "display: inline; padding: 5px;">{{projectsNumber}}</p>
+                <button type="button" style = "display: inline; width: 30px;" class=" mb-4"(click)="changeProjectsNumber(true)">+</button>
+
+                <div *ngFor="let proj of [].constructor(projectsNumber); let i = index">
+                    <div style=" border: 2px solid #4e4e4e;border-radius: 5px;" class="pt-4 mb-4 ms-2">
+                        <div class="form-outline mb-2">
+                            <input type="text" id="projectName{{i+1}}" class="form-control" />
+                            <label class="form-label" for="projectName{{i+1}}">Project Name {{i+1}}</label>
+                        </div>
+                        <div class="form-outline mb-2">
+                            <input type="text" id="descriptionProj{{i+1}}" class="form-control" />
+                            <label class="form-label" for="descriptionProj{{i+1}}">Description {{i+1}}</label>
+                        </div>
+                        <div class="form-outline mb-2">
+                            <input type="text" id="link{{i+1}}" class="form-control">
+                            <label class="form-label" for="link{{i+1}}">Link {{i+1}}</label>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div id="Skills">
+                <div class="divider d-flex align-items-center my-4">
+                    <p class="text-center fw-bold mx-3 mb-0">Skills</p>
+                </div>
+
+                <button type="button" style = "display: inline; width: 30px; margin-left: 20px;"(click)="changeSkillsNumber(false)">-</button>
+                <p style = "display: inline; padding: 5px;">{{skillsNumber}}</p>
+                <button type="button" style = "display: inline; width: 30px;" class=" mb-4"(click)="changeSkillsNumber(true)">+</button>
+
+                <div *ngFor="let proj of [].constructor(skillsNumber); let i = index">
+                    <div class="mb-4 ms-2">
+                        <div class="form-outline mb-2">
+                            <input type="text" id="skillName{{i+1}}" class="form-control" />
+                            <label class="form-label" for="skillName{{i+1}}">Skill {{i+1}}</label>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div id="Achivements">
+                <div class="divider d-flex align-items-center my-4">
+                    <p class="text-center fw-bold mx-3 mb-0">Achivements</p>
+                </div>
+
+                <button type="button" style = "display: inline; width: 30px; margin-left: 20px;"(click)="changeAchivementsNumber(false)">-</button>
+                <p style = "display: inline; padding: 5px;">{{achivementsNumber}}</p>
+                <button type="button" style = "display: inline; width: 30px;" class=" mb-4"(click)="changeAchivementsNumber(true)">+</button>
+
+                <div *ngFor="let proj of [].constructor(achivementsNumber); let i = index">
+                    <div class="mb-4 ms-2">
+                        <div class="form-outline mb-2">
+                            <textarea type="text" id="achivementName{{i+1}}" class="form-control"></textarea>
+                            <label class="form-label" for="achivementName{{i+1}}">Achivement {{i+1}}</label>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+        </form>
+    </div>
+    <div class="col-md bg-secondary vh-100 pt-5">
+        <div style="width: 80%; margin: auto; background-color: white; height: 95%">
+        <div style="text-align: center; font-size: 50px;">RESUME</div>
+        <!-- <div *ngFor="let val of [].constructor(7); let i = index">{{resumeForm.controls[i].value}}</div> -->
+        {{resumeForm.controls["firstName"].value}}
+        {{resumeForm.controls["lastName"].value}}
+        <p>{{resumeForm.controls["email"].value}}  {{resumeForm.controls["linkedin"].value}}  {{resumeForm.controls["github"].value}}  +91{{resumeForm.controls["mobile"].value}}</p>
+        <!-- <div *ngFor="let proj of [].constructor(resumeForm.controls[6].value); let i = index"> -->
+        <p>School Name: {{resumeForm.controls["education"].value[0]["schoolName"]}}</p>
+        <p>Program: {{resumeForm.controls["education"].value[0]["program"]}}</p>
+        <p>Starting Year: {{resumeForm.controls["education"].value[0]["startingYearEdu"]}}</p>
+        <p>Ending Year: {{resumeForm.controls["education"].value[0]["endingYearEdu"]}}</p>
+        <p>CGPA: {{resumeForm.controls["education"].value[0]["cgpa"]}}</p>
+        <!-- </div> -->
+        </div>
+        </div>
+</div>
