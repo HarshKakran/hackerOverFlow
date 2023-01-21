@@ -5,6 +5,7 @@ from rest_framework import status
 from rest_framework.validators import UniqueValidator
 from django.contrib.auth.password_validation import validate_password
 
+from .models import Resume, Contact, Project, Languages, WorkX, Education
 
 # Serializer to Get User Details using Django Token Authentication
 class UserSerializer(serializers.ModelSerializer):
@@ -48,3 +49,39 @@ class RegisterSerializer(serializers.ModelSerializer):
         user.set_password(validated_data['password'])
         user.save()
         return user
+
+class ContactSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Contact
+        fields = ('platform', 'url')
+
+class ProjectSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Project
+        fields = ('name', 'desc', 'url',)
+
+class LanguageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Languages
+        fields = ('name',)
+
+class EducationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Education
+        fields = ('programme', 'institute', 's_yr', 'e_yr', 'cgpa',)
+
+class WorkXSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = WorkX
+        fields = ('role', 'org', 'desc', 's_yr', 'e_yr',)
+
+class ResumeSerializer(serializers.ModelSerializer):
+    contact = ContactSerializer(many=True, read_only=True)
+    projects = ProjectSerializer(many=True, read_only=True)
+    education = EducationSerializer(many=True, read_only=True)
+    languages = LanguageSerializer(many=True, read_only=True)
+    workx = WorkXSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Resume
+        fields = '__all__'
